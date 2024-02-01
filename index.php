@@ -14,17 +14,17 @@ if (!isset($_SESSION['logged_in'])) {
     }
 </style>
 <?php
-if (isset($_GET['view'])) { ?>
-    <style>
-        body {
-            background-image: url("img/kh.jpg");
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            background-attachment: fixed;
-        }
-    </style>
-    <?php
-} else { ?>
+if(isset($_GET['view'])){ ?>
+<style>
+    body {
+        background-image: url("img/kh.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+</style>
+<?php
+}else{ ?>
 
     <div class="row justify-content-center">
         <div class="col-md-5 shadow mt-5 p-3">
@@ -45,41 +45,34 @@ if (isset($_GET['view'])) { ?>
                 $selectData->execute([$id]);
 
                 foreach ($selectData as $data) { ?>
-                    <center>
-                        <h3>Clients Information</h3>
-                    </center>
+                <center><h3>Clients Information</h3></center>
                     <form action="process.php" method="post">
                         <div class="d-flex mt-3">
                             <input type="hidden" name="user_id" value="<?= $data['id'] ?>">
                             <div class="mt-1 ms-5 me-5">
                                 <label for="fname"><b>Firstname</b></label>
-                                <input type="text" class="form-control " id="fname" name="firstname" required
-                                    value="<?= $data['fname'] ?>">
+                                <input type="text" class="form-control " id="fname" name="firstname" required value="<?= $data['fname'] ?>">
                             </div>
                             <div class="mt-1 ms-5 me-5">
                                 <label for="lname "><b>Lastname</b></label>
-                                <input type="text" class="form-control" id="lname" name="lastname" required
-                                    value="<?= $data['lname'] ?>">
+                                <input type="text" class="form-control" id="lname" name="lastname" required value="<?= $data['lname'] ?>">
                             </div>
                         </div>
                         <div class="ms-5 me-5">
                             <label for="age"><b>Age</b></label>
-                            <input type="text" class="form-control" id="age" name="age" required value="<?= $data['age'] ?>">
+                           <input type="text" class="form-control" id="age" name="age" required value="<?= $data['age'] ?>">
                         </div>
                         <div class="ms-5 me-5">
                             <label for="gender"><b>Gender</b></label>
-                            <input type="text" class="form-control" id="gender" name="gender" required
-                                value="<?= $data['gender'] ?>">
+                            <input type="text" class="form-control" id="gender" name="gender" required value="<?= $data['gender'] ?>">
                         </div>
                         <div class="ms-5 me-5">
                             <label for="contact"><b>Contact</b></label>
-                            <input type="text" class="form-control" id="contact" name="contact" required
-                                value="<?= $data['contact'] ?>">
+                            <input type="text" class="form-control" id="contact" name="contact" required value="<?= $data['contact'] ?>">
                         </div>
                         <div class="ms-5 me-5">
                             <label for="address"><b>Address</b></label>
-                            <input type="text" class="form-control" id="address" name="address" required
-                                value="<?= $data['address'] ?>">
+                            <input type="text" class="form-control" id="address" name="address" required value="<?= $data['address'] ?>">
                         </div>
                         <div class="ms-5 me-5">
                             <label for="Date"><b>Date of Check-up</b></label>
@@ -92,8 +85,7 @@ if (isset($_GET['view'])) { ?>
                         </div>
                         <div class="ms-5 me-5 mb-3">
                             <label for="reason"><b>Disease</b></label>
-                            <input type="text" id="reason" name="reason" class="form-control" required
-                                value="<?= $data['reason'] ?>">
+                            <input type="text" id="reason" name="reason" class="form-control" required value="<?= $data['reason'] ?>">
                         </div>
                         <div>
                             <center>
@@ -105,9 +97,7 @@ if (isset($_GET['view'])) { ?>
 
                 <?php }
             } else { ?>
-                <center>
-                    <h3>Clients Information</h3>
-                </center>
+             <center><h3>Clients Information</h3></center>
                 <form action="process.php" method="post">
                     <div class="d-flex mt-3">
                         <input type="hidden" name="user_id" value="<?= $_SESSION['u_id'] ?>">
@@ -121,13 +111,13 @@ if (isset($_GET['view'])) { ?>
                         </div>
                     </div>
                     <div class="ms-5 me-5">
-                        <label for="age"><b>Age</b></label>
-                        <input type="text" class="form-control" id="age" name="age" required>
-                    </div>
-                    <div class="ms-5 me-5">
-                        <label for="gender"><b>Gender</b></label>
-                        <input type="text" class="form-control" id="gender" name="gender" required>
-                    </div>
+                            <label for="age"><b>Age</b></label>
+                           <input type="text" class="form-control" id="age" name="age" required>
+                        </div>
+                        <div class="ms-5 me-5">
+                            <label for="gender"><b>Gender</b></label>
+                            <input type="text" class="form-control" id="gender" name="gender" required>
+                        </div>
                     <div class="ms-5 me-5">
                         <label for="contact"><b>Contact</b></label>
                         <input type="text" class="form-control" id="contact" name="contact" required>
@@ -164,19 +154,22 @@ if (isset($_GET['view'])) { ?>
 
 <?php } ?>
 
-
-
-<!--display-->
+<!--display -->
 <hr>
 <div class="row mt-4 justify-content-center">
     <div class="col-sm-10">
-        <div class="table" id="appointmentTable">
+        <div class="table">
             <table class="table shadow p-2">
                 <thead>
                     <th>No.</th>
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Age</th>
+                    <th>Gender</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>Date of Check-up</th>
+                    <th>Time</th>
                     <th>Disease</th>
                     <th>Action</th>
                 </thead>
@@ -187,6 +180,7 @@ if (isset($_GET['view'])) { ?>
                     $select = $conn->prepare("SELECT * FROM appointment WHERE user_id = ?");
                     $select->execute([$userID]);
                     foreach ($select as $value) { ?>
+
                         <tr>
                             <td>
                                 <?= $cnt++ ?>
@@ -201,21 +195,35 @@ if (isset($_GET['view'])) { ?>
                                 <?= $value['age'] ?>
                             </td>
                             <td>
-                                <?= $value['reason'] ?>
+                                <?= $value['gender'] ?>
                             </td>
                             <td>
-                                <a href="view.php?view&id=<?= $value['id'] ?>" class="text-decoration-none">👁‍🗨</a> |
+                                <?= $value['contact'] ?>
+                            </td>
+                            <td>
+                                <?= $value['address'] ?>
+                            </td>
+                            <td>
+                                <?= $value['date'] ?>
+                            </td>
+                            <td>
+                                <?= $value['time'] ?>
+                            </td>
+                            <td>
+                                <?= $value['reason'] ?>
+                            </td>
+                            <td><a href="index.php?view&id=<?= $value['id'] ?>" class="text-decoration-none">👁‍🗨</a>|
                                 <a href="index.php?edit&id=<?= $value['id'] ?>" class="text-decoration-none">✏️</a>
                                 <a href="process.php?delete&id=<?= $value['id'] ?>" class="text-decoration-none">❌</a>
                             </td>
                         </tr>
+
                     <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
 </div>
 </body>
 
